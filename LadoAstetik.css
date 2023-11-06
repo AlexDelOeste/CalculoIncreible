@@ -1,0 +1,59 @@
+body {
+    background-color: #969292; /* Color de fondo inicial */
+    transition: background-color 0.5s; /* Agrega una transición suave */
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.content {
+    /* Agrega margen superior para evitar que el contenido se superponga con la barra de navegación */
+    margin-top: 50px;
+    /* Agrega relleno para un mejor diseño */
+    padding: 20px;
+}
+
+input[type="text"] {
+    font-size: 20px;
+    width: 80%;
+    padding: 10px;
+    margin: 10px auto;
+}
+
+button {
+    font-size: 18px;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #44607d; /* Color de fondo inicial */
+    color: #fff; /* Color de texto */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición de color al poner el cursor */
+}
+
+button:hover {
+    background-color: #196fc4; /* Color de fondo al poner el cursor */
+}
+
+.input-container img {
+    width: 250px; /* Tamaño más pequeño para la imagen */
+    margin-right: 20px; /* Espacio entre la imagen y el input */
+}
+
+.input-container table {
+    width: 20%; /* Cambia el ancho total de la tabla según tus necesidades */
+}
+
+.input-container table td {
+    width: 1rem; /* Establece el ancho de las celdas */
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 1px; /* Ajusta el valor según tus preferencias */
+}
+
+td {
+    padding: 10px; /* Ajusta el valor según tus preferencias */
+}

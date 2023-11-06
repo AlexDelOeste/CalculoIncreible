@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generador de Números y Múltiplo de 3</title>
+    <link rel="stylesheet" type="text/css" href="LadoAstetik.css">
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 42px;
+            color: #0d0b0b;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 62px;
+            color: #f0f0d6;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        input[type="text"] {
+            font-size: 20px;
+            width: 80%;
+            padding: 10px;
+            margin: 10px auto;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Nivel 1</h1>
+    
+    <div class="input-container">
+        <img src="1.png" alt="Nivel 1">
+        <input type="text" id="nivel1NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel1GenerarNumero">Crear pregunta</button>
+    <button id="nivel1VerificarPregunta">Ver respuesta</button>
+
+    <h1>Nivel 2</h1>
+    
+    <div class="input-container">
+        <img src="2.png" alt="Nivel 2">
+        <input type="text" id="nivel2NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel2GenerarNumero">Crear pregunta</button>
+    <button id="nivel2VerificarPregunta">Ver respuesta</button>
+
+    <h1>Nivel 3</h1>
+    
+    <div class="input-container">
+        <img src="3.png" alt="Nivel 3">
+        <input type="text" id="nivel3NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel3GenerarNumero">Crear pregunta</button>
+    <button id="nivel3VerificarPregunta">Ver respuesta</button>
+
+    <h1>Nivel 4</h1>
+    
+    <div class="input-container">
+        <img src="4.png" alt="Nivel 4">
+        <input type="text" id="nivel4NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel4GenerarNumero">Crear pregunta</button>
+    <button id="nivel4VerificarPregunta">Ver respuesta</button>
+
+    <h1>Nivel 5</h1>
+    
+    <div class="input-container">
+        <img src="5.png" alt="Nivel 5">
+        <input type="text" id="nivel5NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel5GenerarNumero">Crear pregunta</button>
+    <button id="nivel5VerificarPregunta">Ver respuesta</button>
+
+    <h1>Nivel 6</h1>
+
+    <div class="input-container">
+        <img src="6.png" alt="Nivel 6">
+        <table align="center">
+            <tr>
+                <td><input type="text" id="numerator1" text-align="center" readonly></td>
+                <td></td>
+                <td><input type="text" id="numerator2" text-align="center" readonly ></td>
+                <td></td>
+                <td><input type="text" id="numeratorS" text-align="center" readonly></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="text" id="operator" text-align="center" readonly></td>
+                <td></td>
+                <td><input type="text" id="equal" text-align="center" readonly value="="></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td><input type="text" id="denominator1" text-align="center" readonly></td>
+                <td></td>
+                <td><input type="text" id="denominator2" text-align="center" readonly></td>
+                <td></td>
+                <td><input type="text" id="denominatorS" text-align="center" readonly></td>
+            </tr>
+        </table>
+    </div>     
+
+    <br>
+    <button id="nivel6GenerarNumero">Crear pregunta</button>
+    <button id="nivel6VerificarPregunta">Ver respuesta</button>
+    
+    <h1>Nivel 7</h1>
+    
+    <div class="input-container">
+        <img src="7.png" alt="Nivel 7">
+        <input type="text" id="nivel7NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel7GenerarNumero">Crear pregunta</button>
+    <button id="nivel7VerificarPregunta">Ver respuesta</button>
+
+    <h1>Nivel 8</h1>
+    
+    <div class="input-container">
+        <img src="8.png" alt="Nivel 8">
+        <input type="text" id="nivel8NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel8GenerarNumero">Crear pregunta</button>
+    <button id="nivel8VerificarPregunta">Ver respuesta</button>
+
+    <h2>Nivel 9</h2>
+    
+    <div class="input-container">
+        <img src="9.png" alt="Nivel 9">
+        <input type="text" id="nivel9NumeroGenerado" readonly>
+    </div>
+    
+    <br>
+    <button id="nivel9GenerarNumero">Crear pregunta</button>
+    <button id="nivel9VerificarPregunta">Ver respuesta</button>
+
+    <script>
+        function MCD(a, b) {
+            // Implementación del algoritmo de Euclides
+            while (b !== 0) {
+                const temp = b;
+                b = a % b;
+                a = temp;
+            }
+            return Math.abs(a); // Tomamos el valor absoluto en caso de números negativos
+        }
+
+        // Variable para controlar el tipo de pregunta en el Nivel 1
+        let tipoPreguntaNivel1= "multiplo3";
+        
+        // Variable para controlar el tipo de pregunta en el Nivel 2
+        let tipoPreguntaNivel2 = "multiplo11";
+
+        // Variable para controlar el tipo de pregunta en el Nivel 3
+        let tipoPreguntaNivel3 = "multiplo7";
+
+        // Variable para controlar el tipo de pregunta en el Nivel 4
+        let tipoPreguntaNivel4 = "multiplo6";
+
+        // Variable para controlar el tipo de pregunta en el Nivel 5
+        let tipoPreguntaNivel5 = "multiplo14";
+
+        // Variable para controlar el tipo de pregunta en el Nivel 6
+        let tipoPreguntaNivel6 = "suma";
+
+        // Variable para controlar el tipo de pregunta en el Nivel 7
+        let tipoPreguntaNivel7 = "suma";
+
+        // Variable para controlar el tipo de pregunta en el Nivel 8
+        let tipoPreguntaNivel8 = "multiplo21";
+
+        document.getElementById("nivel1GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 2);
+            if (randomNumber === 0) {
+                // Generar una suma de dos números de dos cifras
+                const num1 = Math.floor(Math.random() * 90) + 10;
+                const num2 = Math.floor(Math.random() * 90) + 10;
+                document.getElementById("nivel1NumeroGenerado").value = `${num1} + ${num2} = `;
+                tipoPreguntaNivel1= "suma";
+            } else {
+                // Generar una pregunta sobre si un número es múltiplo de 3
+                let numeroAleatorio = 3*(Math.floor(Math.random() * (10000 - 400 + 1)) + 400);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=numeroAleatorio+1;
+                }
+                document.getElementById("nivel1NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 3? `;
+                tipoPreguntaNivel1= "multiplo3";
+            }
+        });
+
+        document.getElementById("nivel2GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 2);
+            if (randomNumber === 0) {
+                // Generar la pregunta sobre si un número aleatorio es múltiplo de 11
+                let numeroAleatorio = 11*(Math.floor(Math.random() * (9090 - 100 + 1)) + 100);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=numeroAleatorio+2;
+                }
+                document.getElementById("nivel2NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 11? `;
+                tipoPreguntaNivel2 = "multiplo11";
+            } else {
+                // Generar una resta de dos números con resultado positivo
+                let num1, num2, resultado;
+                do {
+                    num1 = Math.floor(Math.random() * 150) + 10;
+                    num2 = Math.floor(Math.random() * 90) + 10;
+                    resultado = num1 - num2;
+                } while (resultado < 0);
+                document.getElementById("nivel2NumeroGenerado").value = `${num1} - ${num2} = `;
+                tipoPreguntaNivel2 = "resta";
+            }
+        });
+
+        document.getElementById("nivel3GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 3);
+            if (randomNumber === 0) {
+                // Generar la pregunta sobre si un número aleatorio es múltiplo de 7
+                let numeroAleatorio = 7*(Math.floor(Math.random() * (1420 - 100 + 1)) + 100);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=numeroAleatorio+1;
+                }
+                document.getElementById("nivel3NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 7? `;
+                tipoPreguntaNivel3 = "multiplo7";
+            } else if (randomNumber === 1) {
+                // Generar una resta de dos números con cualquier resultado
+                let num1, num2, resultado;
+                num1 = Math.floor(Math.random() * (150 - (-150) +1)) -150;
+                num2 = Math.floor(Math.random() * (150 - (-150) +1)) -150;
+                document.getElementById("nivel3NumeroGenerado").value = `(${num1}) - (${num2}) = `;
+                tipoPreguntaNivel3 = "resta";
+            } else{
+                let num1, num2, num3,resultado;
+                num1 = Math.floor(Math.random() * 10)+1;
+                num2 = Math.floor(Math.random() * 10);
+                num3 = Math.floor(Math.random() * 100) + 10;
+                document.getElementById("nivel3NumeroGenerado").value = `(${num1} x ${num2}) + ${num3} = `;
+                tipoPreguntaNivel3 = "combinado";
+            }
+        });
+
+        document.getElementById("nivel4GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 3);
+            if (randomNumber === 0) {
+                // Generar la pregunta sobre si un número aleatorio es múltiplo de 6
+                let numeroAleatorio = 6*(Math.floor(Math.random() * (15000 - 100 + 1)) + 100);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=numeroAleatorio+10;
+                }
+                document.getElementById("nivel4NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 6? `;
+                tipoPreguntaNivel4 = "multiplo6";
+            } else if (randomNumber === 1) {
+                // Generar la pregunta sobre si un número aleatorio es múltiplo de 15
+                let numeroAleatorio = 15*(Math.floor(Math.random() * (7000 - 100 + 1)) + 100);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=numeroAleatorio+10;
+                }
+                document.getElementById("nivel4NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 15? `;
+                tipoPreguntaNivel4 = "multiplo15";
+            } else{
+                let num,raiz;
+                num = Math.floor(Math.random() * (10500 - 500 + 1)) + 500;
+                document.getElementById("nivel4NumeroGenerado").value = `Estima √${num} `;
+                tipoPreguntaNivel4 = "raiz";
+            }
+        });
+
+        document.getElementById("nivel5GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 3);
+            if (randomNumber === 0) {
+                // Generar la pregunta sobre si un número aleatorio es múltiplo de 14
+                let numeroAleatorio = 14*(Math.floor(Math.random() * (642 - 100 + 1)) + 100);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=numeroAleatorio+10;
+                }
+                document.getElementById("nivel5NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 14? `;
+                tipoPreguntaNivel5 = "multiplo14";
+            } else if (randomNumber === 1) {
+                let num1, num2, num3, num4;
+                num1 = Math.floor(Math.random() * 10)+1;
+                num2 = num1*Math.floor(Math.random() * 10);
+                num3 = Math.floor(Math.random() * 10)+1;
+                num4 = num3*Math.floor(Math.random() * 10);
+                document.getElementById("nivel5NumeroGenerado").value = `(${num2} ÷ ${num1}) + (${num4} ÷ ${num3}) = `;
+                tipoPreguntaNivel5 = "combinado";
+            } else{
+                let num,raiz;
+                num = Math.floor(Math.random() * (41000 - 12000 + 1)) + 12000;
+                document.getElementById("nivel5NumeroGenerado").value = `Estima √${num} `;
+                tipoPreguntaNivel5 = "raiz";
+            }
+        });
+
+        document.getElementById("nivel6GenerarNumero").addEventListener("click", function() {
+            //Limpiar las casillas de respuesta
+            document.getElementById("numeratorS").value = ``;
+            document.getElementById("denominatorS").value = ``;
+            
+            // Generar números aleatorios entre 1 y 10
+            let num1 = Math.floor(Math.random() * 10) + 1;
+            let num2 = Math.floor(Math.random() * 11) + 2;
+            let num3 = Math.floor(Math.random() * 10) + 1;
+            let num4 = Math.floor(Math.random() * 11) + 2;
+
+            const aux1 = MCD(num1,num2);
+            const aux2 = MCD(num3,num4);
+
+            num1 = num1/aux1;
+            num2 = num2/aux1;
+            num3 = num3/aux2;
+            num4 = num4/aux2;
+
+            // Números para el numerador
+            document.getElementById("numerator1").value = num1;
+            document.getElementById("numerator2").value = num3;
+
+            // Números para el denominador
+            document.getElementById("denominator1").value = num2;
+            document.getElementById("denominator2").value = num4;
+
+            // Operador aleatorio
+            const operators = ["+", "-", "x", "÷"];
+            const randomOperator = operators[Math.floor(Math.random() * operators.length)];
+            document.getElementById("operator").value = randomOperator;
+
+            if(randomOperator==="+"){
+                tipoPreguntaNivel6 = "suma";
+            } else if(randomOperator==="-"){
+                tipoPreguntaNivel6 = "resta";
+            } else if(randomOperator==="x"){
+                tipoPreguntaNivel6 = "producto";
+            } else{
+                tipoPreguntaNivel6 = "cociente";
+            }
+        });
+
+        document.getElementById("nivel7GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 2);
+            if (randomNumber === 0) {
+                // Generar la pregunta sobre si un número aleatorio es múltiplo de 33
+                let numeroAleatorio = 33*(Math.floor(Math.random() * (270 - 100 + 1)) + 100);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=Math.floor(Math.abs(numeroAleatorio-1200)/2)*3;
+                }
+                document.getElementById("nivel7NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 33? `;
+                tipoPreguntaNivel7 = "multiplo33";
+            } else{
+                // Generar un producto de dos números con dos cifras
+                let num1, num2, resultado;
+                num1 = Math.floor(Math.random() * (99 - 11 +1)) +11;
+                num2 = Math.floor(Math.random() * (99 - 11 +1)) +11;
+                document.getElementById("nivel7NumeroGenerado").value = `${num1} x ${num2} = `;
+                tipoPreguntaNivel7 = "producto";
+            }
+        });
+
+        document.getElementById("nivel8GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 2);
+            if (randomNumber === 0) {
+                // Generar la pregunta sobre si un número aleatorio es múltiplo de 21
+                let numeroAleatorio = 21*(Math.floor(Math.random() * (420 - 100 + 1)) + 100);
+                if(numeroAleatorio%2 === 0){
+                    numeroAleatorio=numeroAleatorio+1;
+                }
+                document.getElementById("nivel8NumeroGenerado").value = `¿El ${numeroAleatorio} es múltiplo de 21? `;
+                tipoPreguntaNivel8 = "multiplo21";
+            } else{
+                // Raíces combinadas
+                let num1, num2, num3;
+                num1 = Math.floor(Math.random() * (99 - 20 + 1))+20;
+                num2 = Math.floor(Math.random() * 11)+1;
+                num3 = Math.floor(Math.random()*(300 - (-200) + 1)) - 200;
+                document.getElementById("nivel8NumeroGenerado").value = `Estima ${num3} + √(${num1} x ${num2})`;
+                tipoPreguntaNivel8 = "combo";
+            }
+        });
+
+        document.getElementById("nivel9GenerarNumero").addEventListener("click", function() {
+            const randomNumber = Math.floor(Math.random() * 2);
+            if (randomNumber === 0) {
+                // Raíces combinadas
+                let num1, num2, num3;
+                num1 = Math.floor(Math.random() * (99 - 10 + 1))+10;
+                num2 = Math.floor(Math.random() * (99 - 10 + 1))+10;
+                document.getElementById("nivel9NumeroGenerado").value = `Estima √(${num1} x ${num2}) `;
+                tipoPreguntaNivel9 = "combo1";
+            } else{
+                // Raíces combinadas
+                let num1, num2, num3;
+                num1 = Math.floor(Math.random() * (120 - 25 + 1))+25;
+                num2 = Math.floor(Math.random() * 12)+1;
+                num3 = Math.floor(Math.random()*5) +1;
+                document.getElementById("nivel9NumeroGenerado").value = `Estima la raíz √(${num1} x ${num2}) dividida entre ${num3} `;
+                tipoPreguntaNivel9 = "combo2";
+            }
+        });
+         
+        document.getElementById("nivel1VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel1NumeroGenerado").value;
+            
+            if (tipoPreguntaNivel1=== "suma") {
+                // Extraer los números de la pregunta de suma
+                const numeros = contenidoActual.match(/\d+/g);
+                const num1 = parseInt(numeros[0]);
+                const num2 = parseInt(numeros[1]);
+                const suma = num1 + num2;
+                document.getElementById("nivel1NumeroGenerado").value = `${contenidoActual}${suma}`;
+            } else {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 3 === 0) {
+                    document.getElementById("nivel1NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel1NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            }
+        });
+
+        document.getElementById("nivel2VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel2NumeroGenerado").value;
+            
+            if (tipoPreguntaNivel2 === "resta") {
+                // Extraer los números de la pregunta de resta
+                const numeros = contenidoActual.match(/\d+/g);
+                const num1 = parseInt(numeros[0]);
+                const num2 = parseInt(numeros[1]);
+                const resta = num1 - num2;
+                document.getElementById("nivel2NumeroGenerado").value = `${contenidoActual}${resta}`;
+            } else {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 11 === 0) {
+                    document.getElementById("nivel2NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel2NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            }
+        });
+
+        document.getElementById("nivel3VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel3NumeroGenerado").value;
+            
+            if (tipoPreguntaNivel3 === "multiplo7") {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 7 === 0) {
+                    document.getElementById("nivel3NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel3NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            } else if (tipoPreguntaNivel3 === "resta") {
+                // Usamos una expresión regular para extraer los números entre paréntesis
+                const regex = /\((-?\d+)\)\s*-\s*\((-?\d+)\)\s*=/;
+                const match = contenidoActual.match(regex);
+
+                if (match) {
+                    const num1 = parseInt(match[1]);
+                    const num2 = parseInt(match[2]);
+      
+                    // Realiza la resta
+                    const resta = num1 - num2;
+                    document.getElementById("nivel3NumeroGenerado").value = `${contenidoActual}${resta}`;
+                }
+            } else{
+                // Extraer los números de la pregunta combinada
+                const numeros = contenidoActual.match(/\d+/g);
+                const num1 = parseInt(numeros[0]);
+                const num2 = parseInt(numeros[1]);
+                const num3 = parseInt(numeros[2]);
+                const combinado = (num1 * num2) + num3;
+                document.getElementById("nivel3NumeroGenerado").value = `${contenidoActual}${combinado}`;
+            }
+        });
+
+        document.getElementById("nivel4VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel4NumeroGenerado").value;
+            
+            if (tipoPreguntaNivel4 === "multiplo6") {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 6 === 0) {
+                    document.getElementById("nivel4NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel4NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            } else if (tipoPreguntaNivel4 === "multiplo15") {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 15 === 0) {
+                    document.getElementById("nivel4NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel4NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            } else{
+                // Extraer los números de la pregunta combinada
+                const numeros = contenidoActual.match(/\d+/g);
+                const raiz = Math.sqrt(parseInt(numeros[0]));
+                const min = 0.95*raiz;
+                const max = 1.05*raiz;
+                document.getElementById("nivel4NumeroGenerado").value = `${contenidoActual} Valor exacto: ${raiz.toFixed(2)} Intervalo aceptado: (${min.toFixed(2)} a ${max.toFixed(2)})`;
+            }
+        });
+
+        document.getElementById("nivel5VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel5NumeroGenerado").value;
+            
+            if (tipoPreguntaNivel5 === "multiplo14") {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 14 === 0) {
+                    document.getElementById("nivel5NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel5NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            } else if (tipoPreguntaNivel5 === "combinado") {
+                // Extraer los números de la pregunta combinada
+                const numeros = contenidoActual.match(/\d+/g);
+                const num1 = parseInt(numeros[0]);
+                const num2 = parseInt(numeros[1]);
+                const num3 = parseInt(numeros[2]);
+                const num4 = parseInt(numeros[3]);
+                const combinado = (num1 / num2) + (num3 / num4);
+                document.getElementById("nivel5NumeroGenerado").value = `${contenidoActual}${combinado}`;
+            } else{
+                const numeros = contenidoActual.match(/\d+/g);
+                const raiz = Math.sqrt(parseInt(numeros[0]));
+                const min = 0.95*raiz;
+                const max = 1.05*raiz;
+                document.getElementById("nivel5NumeroGenerado").value = `${contenidoActual} Valor exacto: ${raiz.toFixed(2)} Intervalo aceptado: (${min.toFixed(2)} a ${max.toFixed(2)})`;
+            }
+        });
+
+        document.getElementById("nivel6VerificarPregunta").addEventListener("click", function() {
+            const n1 = document.getElementById("numerator1").value;
+            const d1 = document.getElementById("denominator1").value;
+            const n2 = document.getElementById("numerator2").value;
+            const d2 = document.getElementById("denominator2").value;
+            let nS, dS, aux;
+            if(tipoPreguntaNivel6 === "suma"){
+                nS = (n1*d2)+(n2*d1);
+                dS = d1*d2;;
+                aux = MCD(nS,dS);
+                nS = nS/aux;
+                dS = dS/aux;
+                document.getElementById("numeratorS").value = `${nS}`;
+                document.getElementById("denominatorS").value = `${dS}`;
+            } else if(tipoPreguntaNivel6 === "resta"){
+                nS = (n1*d2)-(n2*d1);
+                dS = d1*d2;;
+                aux = MCD(nS,dS);
+                nS = nS/aux;
+                dS = dS/aux;
+                document.getElementById("numeratorS").value = `${nS}`;
+                document.getElementById("denominatorS").value = `${dS}`;
+            } else if(tipoPreguntaNivel6 === "producto"){
+                nS = n1*n2;
+                dS = d1*d2;;
+                aux = MCD(nS,dS);
+                nS = nS/aux;
+                dS = dS/aux;
+                document.getElementById("numeratorS").value = `${nS}`;
+                document.getElementById("denominatorS").value = `${dS}`;
+            } else if(tipoPreguntaNivel6 === "cociente"){
+                nS = n1*d2;
+                dS = n2*d1;;
+                aux = MCD(nS,dS);
+                nS = nS/aux;
+                dS = dS/aux;
+                document.getElementById("numeratorS").value = `${nS}`;
+                document.getElementById("denominatorS").value = `${dS}`;
+            }
+        });  
+        
+        document.getElementById("nivel7VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel7NumeroGenerado").value;
+            
+            if (tipoPreguntaNivel7 === "producto") {
+                // Extraer los números de la pregunta de resta
+                const numeros = contenidoActual.match(/\d+/g);
+                const num1 = parseInt(numeros[0]);
+                const num2 = parseInt(numeros[1]);
+                const res = num1 * num2;
+                document.getElementById("nivel7NumeroGenerado").value = `${contenidoActual}${res}`;
+            } else {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 33 === 0) {
+                    document.getElementById("nivel7NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel7NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            }
+        });
+
+        document.getElementById("nivel8VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel8NumeroGenerado").value;
+            if (tipoPreguntaNivel8 === "combo") {
+                const regex = /\s([-+]?\d+)\s\+\s√\(([-+]?\d+)\sx\s([-+]?\d+)\)/;
+                const match = contenidoActual.match(regex);
+
+                const num1 = parseInt(match[1]);
+                const num2 = parseInt(match[2]);
+                const num3 = parseInt(match[3]);
+                const res = num1 + Math.sqrt(num2 * num3);
+                const min = 0.95*res;
+                const max = 1.05*res;
+                document.getElementById("nivel8NumeroGenerado").value = `${contenidoActual} Valor exacto: ${res.toFixed(2)} Intervalo aceptado: (${min.toFixed(2)} a ${max.toFixed(2)})`;
+            } else {
+                // Extraer el número de la pregunta de múltiplo
+                const numero = parseInt(contenidoActual.match(/\d+/)[0]);
+                if (numero % 21 === 0) {
+                    document.getElementById("nivel8NumeroGenerado").value = `${contenidoActual}\nSí es múltiplo`;
+                } else {
+                    document.getElementById("nivel8NumeroGenerado").value = `${contenidoActual}\nNo es múltiplo`;
+                }
+            }
+        });
+
+        document.getElementById("nivel9VerificarPregunta").addEventListener("click", function() {
+            const contenidoActual = document.getElementById("nivel9NumeroGenerado").value;
+            
+            if (tipoPreguntaNivel9 === "combo1") {
+                const numeros = contenidoActual.match(/\d+/g);
+                const res = Math.sqrt(parseInt(numeros[0])*parseInt(numeros[1]));
+                const min = 0.95*res;
+                const max = 1.05*res;
+                document.getElementById("nivel9NumeroGenerado").value = `${contenidoActual} Valor exacto: ${res.toFixed(2)} Intervalo aceptado: (${min.toFixed(2)} a ${max.toFixed(2)})`;
+            } else {
+                const numeros = contenidoActual.match(/\d+/g);
+                const res = (Math.sqrt(parseInt(numeros[0])*parseInt(numeros[1])))/parseInt(numeros[2]);
+                const min = 0.95*res;
+                const max = 1.05*res;
+                document.getElementById("nivel9NumeroGenerado").value = `${contenidoActual} Valor exacto: ${res.toFixed(2)} Intervalo aceptado: (${min.toFixed(2)} a ${max.toFixed(2)})`;
+            }
+        });
+    </script>
+    <script src="Colorazo.js"></script>
+</body>
+</html>
